@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact | Seller Rescue — Syed Hassan Bacha</title>
+<meta name="description" content="Contact Syed Hassan Bacha for expert Amazon reinstatement, appeal writing, and legal action services. Get a free consultation today.">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0A192F;--navy-light:#112240;--gold:#F4A900;--gold-light:#ffc33d;--white:#FFFFFF;--off-white:#F9FAFB;--charcoal:#1A1A2E;--gray:#6B7280;--gray-light:#E5E7EB;--accent:#00BFFF;--container:1200px;--radius:12px}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--charcoal);line-height:1.7;min-height:100vh}
+h1,h2,h3,h4{font-family:'Syne',sans-serif;font-weight:700;line-height:1.2}
+.container{max-width:var(--container);margin:0 auto;padding:0 1.5rem}
+
+/* ── NAVBAR ── */
+nav{background:var(--navy);padding:1.1rem 0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:var(--container);margin:0 auto;padding:0 1.5rem}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.35rem;color:var(--white);text-decoration:none;letter-spacing:.05em}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,.8);text-decoration:none;font-size:.9rem;font-weight:500;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--navy)!important;padding:.5rem 1.2rem;border-radius:6px;font-weight:600!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.4rem}
+.hamburger span{width:24px;height:2px;background:var(--white);display:block}
+.mobile-menu{display:none;flex-direction:column;background:var(--navy);padding:0 1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:rgba(255,255,255,.85);text-decoration:none;font-size:1rem;padding:.9rem 0;border-bottom:1px solid rgba(255,255,255,.07);transition:color .2s}
+.mobile-menu a:hover{color:var(--gold)}
+
+/* ── PAGE HEADER ── */
+.page-header{background:var(--navy);padding:3.5rem 0;text-align:center;border-bottom:1px solid rgba(244,169,0,.1)}
+.page-header h1{color:var(--white);font-size:clamp(2rem,4vw,3rem);margin-bottom:.5rem}
+.page-header p{color:rgba(255,255,255,.55);font-size:1rem}
+.breadcrumb{display:flex;align-items:center;justify-content:center;gap:.5rem;font-size:.8rem;color:rgba(255,255,255,.4);margin-bottom:1rem}
+.breadcrumb a{color:var(--gold);text-decoration:none}
+
+/* ── CONTACT SECTION ── */
+.contact-section{padding:5rem 0}
+.contact-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:3rem;align-items:start}
+.contact-info-panel{background:var(--navy);border-radius:var(--radius);padding:2.5rem;color:var(--white)}
+.contact-info-panel h2{font-size:1.5rem;margin-bottom:.5rem}
+.contact-info-panel>p{color:rgba(255,255,255,.55);font-size:.9rem;margin-bottom:2rem;line-height:1.7}
+.info-item{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.8rem}
+.info-icon{width:44px;height:44px;min-width:44px;background:rgba(244,169,0,.12);border:1px solid rgba(244,169,0,.25);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.info-text strong{display:block;color:var(--white);font-size:.88rem;font-weight:600;margin-bottom:.15rem}
+.info-text a,.info-text span{color:rgba(255,255,255,.55);font-size:.85rem;text-decoration:none;transition:color .2s}
+.info-text a:hover{color:var(--gold)}
+.divider{border:none;border-top:1px solid rgba(255,255,255,.08);margin:1.5rem 0}
+.social-links{display:flex;gap:.7rem;flex-wrap:wrap}
+.social-link{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:.45rem .9rem;font-size:.8rem;color:rgba(255,255,255,.6);text-decoration:none;transition:all .2s}
+.social-link:hover{background:rgba(244,169,0,.1);border-color:rgba(244,169,0,.3);color:var(--gold)}
+
+/* ── FORM PANEL ── */
+.form-panel{background:var(--white);border-radius:var(--radius);padding:2.5rem;box-shadow:0 4px 30px rgba(0,0,0,.06)}
+.form-panel h2{font-size:1.5rem;margin-bottom:.3rem;color:var(--charcoal)}
+.form-panel>p{color:var(--gray);font-size:.88rem;margin-bottom:2rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.field{margin-bottom:1.2rem}
+.field label{display:block;font-size:.83rem;font-weight:500;color:var(--charcoal);margin-bottom:.4rem}
+.field label .req{color:var(--gold);margin-left:2px}
+.field input,.field select,.field textarea{width:100%;padding:.7rem 1rem;border:1.5px solid var(--gray-light);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--charcoal);background:var(--off-white);transition:border-color .2s,box-shadow .2s;outline:none}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(244,169,0,.1);background:var(--white)}
+.field textarea{resize:vertical;min-height:130px}
+.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;cursor:pointer}
+.checkbox-field{display:flex;align-items:flex-start;gap:.6rem;margin-bottom:1.5rem}
+.checkbox-field input[type="checkbox"]{min-width:18px;height:18px;margin-top:.15rem;cursor:pointer;accent-color:var(--gold)}
+.checkbox-field label{font-size:.83rem;color:var(--gray);cursor:pointer}
+.checkbox-field label a{color:var(--gold);text-decoration:none}
+.submit-btn{width:100%;background:var(--navy);color:var(--white);border:none;padding:.85rem 2rem;border-radius:8px;font-family:'Syne',sans-serif;font-size:1rem;font-weight:600;cursor:pointer;transition:all .25s;position:relative;display:flex;align-items:center;justify-content:center;gap:.6rem}
+.submit-btn:hover{background:var(--gold);color:var(--navy)}
+.spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:var(--white);border-radius:50%;animation:spin .7s linear infinite;display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.submit-btn.loading .spinner{display:block}
+.form-alert{padding:1rem 1.2rem;border-radius:8px;font-size:.88rem;margin-bottom:1.2rem;display:none}
+.form-alert.success{background:#d1fae5;border:1px solid #6ee7b7;color:#065f46;display:block}
+.form-alert.error{background:#fee2e2;border:1px solid #fca5a5;color:#991b1b;display:block}
+
+/* ── FOOTER ── */
+footer{background:var(--charcoal);color:rgba(255,255,255,.5);padding:2rem 0;text-align:center;font-size:.82rem}
+footer a{color:var(--gold);text-decoration:none}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr}}
+@media(max-width:768px){.nav-links{display:none}.hamburger{display:flex}.form-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">SELLER <span>RESCUE</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#portfolio">Portfolio</a></li>
+      <li><a href="contact.html" class="active nav-cta">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#portfolio">Portfolio</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="breadcrumb"><a href="index.html">Home</a> / Contact</div>
+  <h1>Get In Touch</h1>
+  <p>Let's discuss your Amazon issue and find the best solution.</p>
+</div>
+
+<!-- CONTACT SECTION -->
+<section class="contact-section">
+  <div class="container">
+    <div class="contact-grid">
+      <!-- Left: Info -->
+      <div class="contact-info-panel">
+        <h2>Contact Information</h2>
+        <p>Reach out through any of the channels below. I typically respond within 24 hours.</p>
+        <div class="info-item">
+          <div class="info-icon">📧</div>
+          <div class="info-text">
+            <strong>Email</strong>
+            <a href="mailto:syedgillani088@gmail.com">syedgillani088@gmail.com</a>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">📱</div>
+          <div class="info-text">
+            <strong>Phone / WhatsApp</strong>
+            <a href="tel:+923439737494">+92 343 9737494</a>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">⏰</div>
+          <div class="info-text">
+            <strong>Working Hours</strong>
+            <span>Monday – Saturday: 9:00 AM – 8:00 PM (PKT)</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">📍</div>
+          <div class="info-text">
+            <strong>Location</strong>
+            <span>Pakistan (Remote Services Worldwide)</span>
+          </div>
+        </div>
+        <hr class="divider">
+        <div class="social-links">
+          <a href="https://www.trustpilot.com/review/fbarescue.online" target="_blank" rel="noopener" class="social-link">⭐ Trustpilot</a>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="form-panel">
+        <h2>Send a Message</h2>
+        <p>Fill in the form below and I'll get back to you within 24 hours.</p>
+        <div id="formSuccess" class="form-alert success">✅ Your message was sent! I'll get back to you within 24 hours.</div>
+        <div id="formError" class="form-alert error">❌ Something went wrong. Please try again or email directly.</div>
+
+        <form id="contactForm" novalidate>
+          <!-- Honeypot (hidden) -->
+          <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+
+          <div class="form-row">
+            <div class="field">
+              <label>Full Name <span class="req">*</span></label>
+              <input type="text" name="name" placeholder="Your full name" required>
+            </div>
+            <div class="field">
+              <label>Email Address <span class="req">*</span></label>
+              <input type="email" name="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>Phone Number</label>
+              <input type="tel" name="phone" placeholder="+1 234 567 8900">
+            </div>
+            <div class="field">
+              <label>Subject <span class="req">*</span></label>
+              <select name="subject" required>
+                <option value="" disabled selected>Select a service…</option>
+                <option>Account Reinstatement</option>
+                <option>Fund Hold Resolution</option>
+                <option>Appeal Writing</option>
+                <option>IP Complaint Removal</option>
+                <option>Listing Activation</option>
+                <option>Legal Documentation</option>
+                <option>Arbitration</option>
+                <option>Amazon Advertising</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label>Message <span class="req">*</span></label>
+            <textarea name="message" placeholder="Describe your issue in detail…" required></textarea>
+          </div>
+          <div class="checkbox-field">
+            <input type="checkbox" id="terms" name="terms" required>
+            <label for="terms">I agree to the <a href="terms.html" target="_blank">Terms of Service</a> and Privacy Policy.</label>
+          </div>
+          <button type="submit" class="submit-btn" id="submitBtn">
+            <span>Send Message</span>
+            <span class="spinner"></span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Seller Rescue | Syed Hassan Bacha — <a href="mailto:syedgillani088@gmail.com">syedgillani088@gmail.com</a> | <a href="tel:+923439737494">+92 343 9737494</a></p>
+</footer>
+
+<script>
+// Hamburger
+const ham = document.getElementById('hamburger'), mm = document.getElementById('mobileMenu');
+ham.addEventListener('click',()=>mm.classList.toggle('open'));
+
+// Form submit (frontend demo — connect to contact.php for real sending)
+document.getElementById('contactForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  const form = this;
+  const success = document.getElementById('formSuccess');
+  const error = document.getElementById('formError');
+  success.style.display = 'none'; error.style.display = 'none';
+
+  // Honeypot check
+  if(form.querySelector('[name="website"]').value) return;
+
+  // Basic validation
+  const name = form.querySelector('[name="name"]').value.trim();
+  const email = form.querySelector('[name="email"]').value.trim();
+  const subject = form.querySelector('[name="subject"]').value;
+  const message = form.querySelector('[name="message"]').value.trim();
+  const terms = form.querySelector('[name="terms"]').checked;
+
+  if(!name||!email||!subject||!message||!terms){
+    error.textContent = '❌ Please fill in all required fields and accept the Terms.';
+    error.style.display = 'block'; return;
+  }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!emailRegex.test(email)){
+    error.textContent = '❌ Please enter a valid email address.';
+    error.style.display = 'block'; return;
+  }
+
+  btn.classList.add('loading'); btn.disabled = true;
+
+  // Simulate sending (replace with actual fetch to contact.php)
+  await new Promise(r=>setTimeout(r,1500));
+
+  btn.classList.remove('loading'); btn.disabled = false;
+  success.style.display = 'block';
+  form.reset();
+});
+</script>
+</body>
+</html>

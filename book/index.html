@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Pro Cover Studio | Zoom + Pan + Bleed + Barcode By hassan bacha</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #eef2f8;
+            color: #0f172a;
+            padding: 24px 32px;
+        }
+        .app-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            padding: 28px 32px;
+            background: #f9fbfd;
+            border-bottom: 1px solid #e2edf2;
+        }
+        .controls-panel {
+            flex: 1.2;
+            min-width: 300px;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+        .preview-panel {
+            flex: 2.5;
+            background: #eef2f6;
+            border-radius: 24px;
+            padding: 20px;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.03), 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .section-title {
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #1e3a8a;
+            margin-bottom: 16px;
+            border-left: 4px solid #3b82f6;
+            padding-left: 12px;
+        }
+        .upload-group {
+            background: white;
+            border-radius: 20px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            border: 1px solid #e4edf2;
+            transition: all 0.2s;
+        }
+        .layer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        .layer-name { font-weight: 700; font-size: 1rem; color: #0c4e6e; }
+        .badge {
+            background: #e6f0ff;
+            padding: 4px 10px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #1e40af;
+        }
+        input[type="file"] { font-size: 0.8rem; padding: 6px 0; width: 100%; }
+        .slider-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 14px;
+        }
+        .slider-item {
+            flex: 1;
+            background: #f9fcff;
+            padding: 6px 10px;
+            border-radius: 32px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        .slider-item label { width: 28px; font-weight: 600; }
+        input[type="range"] {
+            flex: 1;
+            height: 4px;
+            border-radius: 10px;
+            -webkit-appearance: none;
+            background: #cbd5e1;
+        }
+        input[type="range"]:focus { outline: none; }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            background: #3b82f6;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        .offset-value, .scale-value {
+            min-width: 44px;
+            font-size: 0.7rem;
+            font-family: monospace;
+            font-weight: 600;
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 20px;
+            text-align: center;
+        }
+        .btn-reset {
+            background: none;
+            border: none;
+            color: #3b82f6;
+            font-size: 0.7rem;
+            cursor: pointer;
+            margin-left: 4px;
+            font-weight: 500;
+        }
+        button {
+            background: #1e293b;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 40px;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.8rem;
+        }
+        button.primary { background: #3b82f6; box-shadow: 0 2px 6px rgba(59,130,246,0.3); }
+        button.primary:hover { background: #2563eb; }
+        .action-buttons { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+        .canvas-wrapper {
+            background: #cbdae6;
+            border-radius: 20px;
+            padding: 12px;
+            display: flex;
+            justify-content: center;
+            overflow: auto;
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
+        }
+        canvas {
+            display: block;
+            margin: 0 auto;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.2);
+            border-radius: 4px;
+            background: #fefefe;
+            cursor: crosshair;
+            max-width: 100%;
+            height: auto;
+        }
+        .info-note {
+            margin-top: 14px;
+            font-size: 0.7rem;
+            background: #eef2ff;
+            padding: 10px 14px;
+            border-radius: 18px;
+            color: #1e293b;
+            text-align: center;
+        }
+        i { margin-right: 6px; }
+        hr { margin: 12px 0; border-color: #e2edf2; }
+        @media (max-width: 900px) { body { padding: 16px; } .toolbar { flex-direction: column; } }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <div class="toolbar">
+        <div class="controls-panel">
+            <div style="margin-bottom: 24px;">
+                <h2 style="font-weight: 800; font-size: 1.7rem;"><i class="fas fa-book"></i> CoverForge Pro</h2>
+                <p style="font-size: 0.75rem; color: #475569;">Precision bleed | Zoom & Pan | PDF/PNG | Barcode ready</p>
+            </div>
+
+            <!-- FULL COVER (Bleed background) -->
+            <div class="upload-group">
+                <div class="layer-header"><span class="layer-name"><i class="fas fa-fill-drip"></i> Full Bleed BG</span><span class="badge">fills entire canvas</span></div>
+                <input type="file" id="bgFullInput" accept="image/jpeg,image/png,image/webp">
+                <div class="slider-container">
+                    <div class="slider-item"><label>🐾 X</label><input type="range" id="bgOffsetX" min="-80" max="80" value="0" step="1"><span id="bgXVal" class="offset-value">0in</span></div>
+                    <div class="slider-item"><label>🐾 Y</label><input type="range" id="bgOffsetY" min="-80" max="80" value="0" step="1"><span id="bgYVal" class="offset-value">0in</span></div>
+                    <div class="slider-item"><label>🔍 Zoom</label><input type="range" id="bgScale" min="0.5" max="2.5" value="1" step="0.01"><span id="bgScaleVal" class="scale-value">1.00x</span></div>
+                    <button class="btn-reset" id="resetBg"><i class="fas fa-undo-alt"></i> Reset</button>
+                </div>
+            </div>
+
+            <!-- BACK COVER -->
+            <div class="upload-group">
+                <div class="layer-header"><span class="layer-name"><i class="fas fa-arrow-left"></i> Back Cover</span><span class="badge">left side + bleed</span></div>
+                <input type="file" id="backImgInput" accept="image/jpeg,image/png,image/webp">
+                <div class="slider-container">
+                    <div class="slider-item"><label>X</label><input type="range" id="backOffsetX" min="-70" max="70" value="0" step="1"><span id="backXVal" class="offset-value">0in</span></div>
+                    <div class="slider-item"><label>Y</label><input type="range" id="backOffsetY" min="-70" max="70" value="0" step="1"><span id="backYVal" class="offset-value">0in</span></div>
+                    <div class="slider-item"><label>Zoom</label><input type="range" id="backScale" min="0.5" max="2.5" value="1" step="0.01"><span id="backScaleVal" class="scale-value">1.00x</span></div>
+                    <button class="btn-reset" id="resetBack"><i class="fas fa-undo-alt"></i> Reset</button>
+                </div>
+            </div>
+
+            <!-- SPINE -->
+            <div class="upload-group">
+                <div class="layer-header"><span class="layer-name"><i class="fas fa-book"></i> Spine</span><span class="badge">0.453" width</span></div>
+                <input type="file" id="spineImgInput" accept="image/jpeg,image/png,image/webp">
+                <div class="slider-container">
+                    <div class="slider-item"><label>X</label><input type="range" id="spineOffsetX" min="-40" max="40" value="0" step="1"><span id="spineXVal" class="offset-value">0in</span></div>
+                    <div class="slider-item"><label>Y</label><input type="range" id="spineOffsetY" min="-60" max="60" value="0" step="1"><span id="spineYVal" class="offset-value">0in</span></div>
+                    <div class="slider-item"><label>Zoom</label><input type="range" id="spineScale" min="0.5" max="2.8" value="1" step="0.01"><span id="spineScaleVal" class="scale-value">1.00x</span></div>
+                    <button class="btn-reset" id="resetSpine"><i class="fas fa-undo-alt"></i> Reset</button>
+                </div>
+            </div>
+
+            <!-- FRONT COVER -->
+            <div class="upload-group">
+                <div class="layer-header"><span class="layer-name"><i class="fas fa-arrow-right"></i> Front Cover</span><span class="badge">right side + bleed</span></div>
+                <input type="file" id="frontImgInput" accept="image/jpeg,image/png,image/webp">
+                <div class="slider-container">
+                    <div class="slider-item"><label>X</label><input type="range" id="frontOffsetX" min="-70" max="70" value="0" step="1"><span id="frontXVal" class="offset-value">0in</span></div>
+                    <div class="slider-item"><label>Y</label><input type="range" id="frontOffsetY" min="-70" max="70" value="0" step="1"><span id="frontYVal" class="offset-value">0in</span></div>
+                    <div class="slider-item"><label>Zoom</label><input type="range" id="frontScale" min="0.5" max="2.5" value="1" step="0.01"><span id="frontScaleVal" class="scale-value">1.00x</span></div>
+                    <button class="btn-reset" id="resetFront"><i class="fas fa-undo-alt"></i> Reset</button>
+                </div>
+            </div>
+
+            <!-- BARCODE (fixed placement, no zoom/pan needed) -->
+            <div class="upload-group">
+                <div class="layer-header"><span class="layer-name"><i class="fas fa-barcode"></i> Barcode</span><span class="badge">auto bottom-right back cover</span></div>
+                <input type="file" id="barcodeInput" accept="image/jpeg,image/png,image/webp">
+                <div class="info-note"><i class="fas fa-info-circle"></i> Placed at 0.25" margins, scales proportionally (max width 1.4in).</div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="downloadPngBtn" class="primary"><i class="fas fa-camera"></i> PNG (300 DPI)</button>
+                <button id="downloadPdfBtn"><i class="fas fa-file-pdf"></i> PDF Print Ready</button>
+                <button id="resetAllBtn"><i class="fas fa-trash-alt"></i> Reset Everything</button>
+            </div>
+        </div>
+
+        <div class="preview-panel">
+            <div class="section-title"><i class="fas fa-ruler-combined"></i> Live Preview • Trim (Blue) • Safe (White) • Bleed (Red)</div>
+            <div class="canvas-wrapper">
+                <canvas id="coverCanvas" width="900" height="620" style="width:100%; height:auto;"></canvas>
+            </div>
+            <div class="info-note">
+                <i class="fas fa-mouse-pointer"></i> <strong>Zero margins by default</strong> — Each image fills its region completely. Use <i class="fas fa-search-plus"></i> Zoom & <i class="fas fa-arrows-alt"></i> Pan to adjust composition.
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // -------- DIMENSIONS (inches) ----------
+    const OVERALL_W_IN = 17.243;
+    const OVERALL_H_IN = 11.940;
+    const SPINE_W_IN = 0.453;
+    const FRONT_TRIM_W_IN = 8.27;
+    const BACK_TRIM_W_IN = 8.27;
+    const TRIM_H_IN = 11.69;
+    const BLEED_IN = 0.125;
+    const SAFE_MARGIN_IN = 0.125;
+    
+    const LEFT_BLEED = BLEED_IN;
+    const BACK_TRIM_X_IN = LEFT_BLEED;
+    const SPINE_X_IN = BACK_TRIM_X_IN + BACK_TRIM_W_IN;
+    const FRONT_TRIM_X_IN = SPINE_X_IN + SPINE_W_IN;
+    const TOP_BLEED_IN = BLEED_IN;
+    const TRIM_Y_IN = TOP_BLEED_IN;
+    
+    // Regions
+    function getBackRegion() { return { x: 0, y: 0, w: BACK_TRIM_X_IN + BACK_TRIM_W_IN, h: OVERALL_H_IN }; }
+    function getFrontRegion() { return { x: FRONT_TRIM_X_IN, y: 0, w: OVERALL_W_IN - FRONT_TRIM_X_IN, h: OVERALL_H_IN }; }
+    function getSpineRegion() { return { x: SPINE_X_IN, y: 0, w: SPINE_W_IN, h: OVERALL_H_IN }; }
+    function getBackTrimRect() { return { x: BACK_TRIM_X_IN, y: TRIM_Y_IN, w: BACK_TRIM_W_IN, h: TRIM_H_IN }; }
+    
+    // State: images
+    let fullBgImg = null, frontImg = null, backImg = null, spineImg = null, barcodeImg = null;
+    
+    // Offsets (inches) + scale factors
+    let offsets = { fullBg: { x: 0, y: 0 }, front: { x: 0, y: 0 }, back: { x: 0, y: 0 }, spine: { x: 0, y: 0 } };
+    let scales = { fullBg: 1.0, front: 1.0, back: 1.0, spine: 1.0 };
+    
+    // DPI: preview moderate, export high
+    let PREVIEW_DPI = 96;
+    const EXPORT_DPI = 300;
+    const canvasElem = document.getElementById('coverCanvas');
+    let ctx = canvasElem.getContext('2d');
+    
+    function inToPx(inches, dpi) { return inches * dpi; }
+    
+    // ---------- Core drawing with ZOOM (scale) + pan, ensures image fills region with zero margins when scale=1 ----------
+    function drawImageInRegion(ctx, img, regionInches, offsetInches, scaleFactor, dpi) {
+        if (!img) return;
+        ctx.save();
+        const regXPx = inToPx(regionInches.x, dpi);
+        const regYPx = inToPx(regionInches.y, dpi);
+        const regWPx = inToPx(regionInches.w, dpi);
+        const regHPx = inToPx(regionInches.h, dpi);
+        ctx.beginPath();
+        ctx.rect(regXPx, regYPx, regWPx, regHPx);
+        ctx.clip();
+        
+        // Image native ratio
+        const imgW = img.width, imgH = img.height;
+        const imgAspect = imgW / imgH;
+        const regionAspect = regionInches.w / regionInches.h;
+        
+        // Step 1: base dimensions to COVER region completely (no gaps) => fill mode (like cover/object-fit cover)
+        let baseW_in, baseH_in;
+        if (imgAspect > regionAspect) {
+            // image is wider: fit to height
+            baseH_in = regionInches.h;
+            baseW_in = baseH_in * imgAspect;
+        } else {
+            baseW_in = regionInches.w;
+            baseH_in = baseW_in / imgAspect;
+        }
+        
+        // Apply scale factor (zoom)
+        let drawW_in = baseW_in * scaleFactor;
+        let drawH_in = baseH_in * scaleFactor;
+        
+        // Offset in inches: shift relative to centered position
+        let offsetXPx = inToPx(offsetInches.x, dpi);
+        let offsetYPx = inToPx(offsetInches.y, dpi);
+        
+        // Center image in region before applying offset
+        let leftOffset_in = (regionInches.w - drawW_in) / 2;
+        let topOffset_in = (regionInches.h - drawH_in) / 2;
+        let drawX_in = regionInches.x + leftOffset_in + (offsetInches.x);
+        let drawY_in = regionInches.y + topOffset_in + (offsetInches.y);
+        
+        let drawXPx = inToPx(drawX_in, dpi);
+        let drawYPx = inToPx(drawY_in, dpi);
+        let drawWPx = inToPx(drawW_in, dpi);
+        let drawHPx = inToPx(drawH_in, dpi);
+        
+        ctx.drawImage(img, drawXPx, drawYPx, drawWPx, drawHPx);
+        ctx.restore();
+    }
+    
+    // Draw guides: trim, safe, spine edges
+    function drawGuides(ctx, dpi, wPx, hPx) {
+        ctx.save();
+        ctx.strokeStyle = "#2c7be5";
+        ctx.lineWidth = Math.max(1.5, dpi/80);
+        ctx.setLineDash([10, 8]);
+        // full trim rectangle (entire front+back+spine trim)
+        let trimXPx = inToPx(BACK_TRIM_X_IN, dpi);
+        let trimYPx = inToPx(TRIM_Y_IN, dpi);
+        let trimWPx = inToPx(FRONT_TRIM_X_IN + FRONT_TRIM_W_IN - BACK_TRIM_X_IN, dpi);
+        let trimHPx = inToPx(TRIM_H_IN, dpi);
+        ctx.strokeRect(trimXPx, trimYPx, trimWPx, trimHPx);
+        
+        // Spine vertical lines
+        ctx.beginPath();
+        let spineLpx = inToPx(SPINE_X_IN, dpi);
+        let spineRpx = inToPx(SPINE_X_IN + SPINE_W_IN, dpi);
+        ctx.moveTo(spineLpx, 0); ctx.lineTo(spineLpx, hPx);
+        ctx.moveTo(spineRpx, 0); ctx.lineTo(spineRpx, hPx);
+        ctx.stroke();
+        
+        // Safe area (white dashed)
+        ctx.setLineDash([5, 6]);
+        ctx.strokeStyle = "#ffffff";
+        ctx.lineWidth = Math.max(1.2, dpi/100);
+        let safeOff = SAFE_MARGIN_IN;
+        let safeX = inToPx(BACK_TRIM_X_IN + safeOff, dpi);
+        let safeY = inToPx(TRIM_Y_IN + safeOff, dpi);
+        let safeW = inToPx((FRONT_TRIM_X_IN+FRONT_TRIM_W_IN) - (BACK_TRIM_X_IN + safeOff*2), dpi);
+        let safeH = inToPx(TRIM_H_IN - safeOff*2, dpi);
+        ctx.strokeRect(safeX, safeY, safeW, safeH);
+        
+        // Bleed boundary (red solid)
+        ctx.setLineDash([]);
+        ctx.strokeStyle = "#dc2626";
+        ctx.lineWidth = 1.2;
+        ctx.strokeRect(0, 0, wPx, hPx);
+        ctx.restore();
+    }
+    
+    // Main render engine (for preview or export)
+    async function renderToCanvas(targetCanvas, dpi, forExport = false) {
+        const wPx = inToPx(OVERALL_W_IN, dpi);
+        const hPx = inToPx(OVERALL_H_IN, dpi);
+        targetCanvas.width = wPx;
+        targetCanvas.height = hPx;
+        const ctxR = targetCanvas.getContext('2d');
+        ctxR.clearRect(0, 0, wPx, hPx);
+        
+        // White base
+        ctxR.fillStyle = "#ffffff";
+        ctxR.fillRect(0, 0, wPx, hPx);
+        
+        // 1. Full background (bleed fill)
+        if (fullBgImg) {
+            const fullRegion = { x: 0, y: 0, w: OVERALL_W_IN, h: OVERALL_H_IN };
+            drawImageInRegion(ctxR, fullBgImg, fullRegion, offsets.fullBg, scales.fullBg, dpi);
+        } else {
+            ctxR.fillStyle = "#f2eee9";
+            ctxR.fillRect(0, 0, wPx, hPx);
+        }
+        
+        // 2. Back Cover (with its own zoom/pan)
+        if (backImg) drawImageInRegion(ctxR, backImg, getBackRegion(), offsets.back, scales.back, dpi);
+        
+        // 3. Spine
+        if (spineImg) drawImageInRegion(ctxR, spineImg, getSpineRegion(), offsets.spine, scales.spine, dpi);
+        
+        // 4. Front Cover
+        if (frontImg) drawImageInRegion(ctxR, frontImg, getFrontRegion(), offsets.front, scales.front, dpi);
+        
+        // 5. Barcode (fixed placement on back trim)
+        if (barcodeImg) {
+            let backTrim = getBackTrimRect();
+            let margin = 0.25;
+            let maxWidthIn = 1.4;
+            let barcodeWidthIn = Math.min(maxWidthIn, backTrim.w * 0.4);
+            let barcodeHeightIn = (barcodeImg.height / barcodeImg.width) * barcodeWidthIn;
+            if (barcodeHeightIn > backTrim.h * 0.28) barcodeHeightIn = backTrim.h * 0.28;
+            let posX_in = backTrim.x + backTrim.w - margin - barcodeWidthIn;
+            let posY_in = backTrim.y + backTrim.h - margin - barcodeHeightIn;
+            let destXPx = inToPx(posX_in, dpi);
+            let destYPx = inToPx(posY_in, dpi);
+            let destWPx = inToPx(barcodeWidthIn, dpi);
+            let destHPx = inToPx(barcodeHeightIn, dpi);
+            ctxR.save();
+            ctxR.beginPath();
+            ctxR.rect(destXPx, destYPx, destWPx, destHPx);
+            ctxR.clip();
+            ctxR.drawImage(barcodeImg, destXPx, destYPx, destWPx, destHPx);
+            ctxR.restore();
+        }
+        
+        // draw guidelines only in preview mode
+        if (!forExport) drawGuides(ctxR, dpi, wPx, hPx);
+        return targetCanvas;
+    }
+    
+    async function updatePreview() { await renderToCanvas(canvasElem, PREVIEW_DPI, false); }
+    
+    // Export high-res PNG
+    async function exportHighResPNG() {
+        const exportCanvas = document.createElement('canvas');
+        await renderToCanvas(exportCanvas, EXPORT_DPI, true);
+        const link = document.createElement('a');
+        link.download = 'book_cover_pro.png';
+        link.href = exportCanvas.toDataURL('image/png');
+        link.click();
+    }
+    
+    // PDF (exact page size in inches)
+    async function exportPDF() {
+        const { jsPDF } = window.jspdf;
+        const highCanvas = document.createElement('canvas');
+        await renderToCanvas(highCanvas, 300, true);
+        const imgData = highCanvas.toDataURL('image/jpeg', 1.0);
+        const pdf = new jsPDF({ unit: 'in', format: [OVERALL_W_IN, OVERALL_H_IN], orientation: 'landscape' });
+        pdf.addImage(imgData, 'JPEG', 0, 0, OVERALL_W_IN, OVERALL_H_IN, undefined, 'FAST');
+        pdf.save('cover_print.pdf');
+    }
+    
+    // Reset all images, offsets & scales
+    function resetAll() {
+        fullBgImg = frontImg = backImg = spineImg = barcodeImg = null;
+        offsets = { fullBg: { x:0,y:0 }, front: { x:0,y:0 }, back: { x:0,y:0 }, spine: { x:0,y:0 } };
+        scales = { fullBg: 1, front: 1, back: 1, spine: 1 };
+        ['bgFullInput','frontImgInput','backImgInput','spineImgInput','barcodeInput'].forEach(id => {
+            document.getElementById(id).value = '';
+        });
+        updateUIFromState();
+        updatePreview();
+    }
+    
+    function updateUIFromState() {
+        // Full BG
+        document.getElementById('bgOffsetX').value = offsets.fullBg.x;
+        document.getElementById('bgOffsetY').value = offsets.fullBg.y;
+        document.getElementById('bgScale').value = scales.fullBg;
+        document.getElementById('bgXVal').innerText = offsets.fullBg.x.toFixed(1)+"in";
+        document.getElementById('bgYVal').innerText = offsets.fullBg.y.toFixed(1)+"in";
+        document.getElementById('bgScaleVal').innerText = scales.fullBg.toFixed(2)+"x";
+        // Back
+        document.getElementById('backOffsetX').value = offsets.back.x;
+        document.getElementById('backOffsetY').value = offsets.back.y;
+        document.getElementById('backScale').value = scales.back;
+        document.getElementById('backXVal').innerText = offsets.back.x.toFixed(1)+"in";
+        document.getElementById('backYVal').innerText = offsets.back.y.toFixed(1)+"in";
+        document.getElementById('backScaleVal').innerText = scales.back.toFixed(2)+"x";
+        // Spine
+        document.getElementById('spineOffsetX').value = offsets.spine.x;
+        document.getElementById('spineOffsetY').value = offsets.spine.y;
+        document.getElementById('spineScale').value = scales.spine;
+        document.getElementById('spineXVal').innerText = offsets.spine.x.toFixed(1)+"in";
+        document.getElementById('spineYVal').innerText = offsets.spine.y.toFixed(1)+"in";
+        document.getElementById('spineScaleVal').innerText = scales.spine.toFixed(2)+"x";
+        // Front
+        document.getElementById('frontOffsetX').value = offsets.front.x;
+        document.getElementById('frontOffsetY').value = offsets.front.y;
+        document.getElementById('frontScale').value = scales.front;
+        document.getElementById('frontXVal').innerText = offsets.front.x.toFixed(1)+"in";
+        document.getElementById('frontYVal').innerText = offsets.front.y.toFixed(1)+"in";
+        document.getElementById('frontScaleVal').innerText = scales.front.toFixed(2)+"x";
+    }
+    
+    function attachImageHandler(id, key) {
+        document.getElementById(id).addEventListener('change', (e) => {
+            if (e.target.files && e.target.files[0]) {
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        if (key === 'fullBg') fullBgImg = img;
+                        else if (key === 'front') frontImg = img;
+                        else if (key === 'back') backImg = img;
+                        else if (key === 'spine') spineImg = img;
+                        else if (key === 'barcode') barcodeImg = img;
+                        updatePreview();
+                    };
+                    img.src = ev.target.result;
+                };
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+    }
+    
+    function attachSliderWithReset(idX, idY, idScale, key, resetBtnId) {
+        document.getElementById(idX).addEventListener('input', (e) => { offsets[key].x = parseFloat(e.target.value); document.getElementById(idX+"Val").innerText = offsets[key].x.toFixed(1)+"in"; updatePreview(); });
+        document.getElementById(idY).addEventListener('input', (e) => { offsets[key].y = parseFloat(e.target.value); document.getElementById(idY+"Val").innerText = offsets[key].y.toFixed(1)+"in"; updatePreview(); });
+        document.getElementById(idScale).addEventListener('input', (e) => { scales[key] = parseFloat(e.target.value); document.getElementById(idScale+"Val").innerText = scales[key].toFixed(2)+"x"; updatePreview(); });
+        document.getElementById(resetBtnId).addEventListener('click', () => { offsets[key] = { x:0, y:0 }; scales[key] = 1; updateUIFromState(); updatePreview(); });
+    }
+    
+    function init() {
+        attachImageHandler('bgFullInput', 'fullBg');
+        attachImageHandler('frontImgInput', 'front');
+        attachImageHandler('backImgInput', 'back');
+        attachImageHandler('spineImgInput', 'spine');
+        attachImageHandler('barcodeInput', 'barcode');
+        
+        attachSliderWithReset('bgOffsetX', 'bgOffsetY', 'bgScale', 'fullBg', 'resetBg');
+        attachSliderWithReset('backOffsetX', 'backOffsetY', 'backScale', 'back', 'resetBack');
+        attachSliderWithReset('spineOffsetX', 'spineOffsetY', 'spineScale', 'spine', 'resetSpine');
+        attachSliderWithReset('frontOffsetX', 'frontOffsetY', 'frontScale', 'front', 'resetFront');
+        
+        document.getElementById('downloadPngBtn').onclick = () => exportHighResPNG();
+        document.getElementById('downloadPdfBtn').onclick = () => exportPDF();
+        document.getElementById('resetAllBtn').onclick = () => resetAll();
+        
+        updateUIFromState();
+        updatePreview();
+    }
+    
+    init();
+</script>
+</body>
+</html>

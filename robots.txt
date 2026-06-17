@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Disallow: /vendor/
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /.svn/
+Disallow: /cache/
+Disallow: /logs/
+Disallow: /tmp/
+Disallow: /temp/
+Disallow: /seo-tool/
+
+Sitemap: http://localhost/sitemap.xml
