@@ -1,0 +1,347 @@
+{
+    "admins": [
+        {
+            "username": "admin",
+            "password": "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC\/.og\/at2.uheWG\/igi"
+        }
+    ],
+    "users": [
+        {
+            "id": "AMZ-C8DD23A6",
+            "unique_id": "AMZ-C8DD23A6",
+            "name": "Kevin",
+            "email": "theamazinfba@gmail.com"
+        }
+    ],
+    "accounts": [
+        {
+            "id": "ACC-5102E66F",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "Vista Vault",
+            "progress": 20,
+            "status": "Active",
+            "note": "",
+            "appeals": [],
+            "updates": [
+                {
+                    "note": "We have collected all\r\nthe required\r\ndocuments for this\r\naccount and are in the\r\nprocess of submitting\r\nthem. At the same\r\ntime, I am regularly\r\nfollowing up with UPS\r\nand contacting them\r\nrepeatedly to obtain\r\nthe Proof of Delivery\r\n(POD). However, we\r\ncurrently have limited\r\nsupporting documents\r\navailable.",
+                    "status": "Under Review",
+                    "progress": 20,
+                    "by": "admin",
+                    "at": "18 Jun 2026, 07:55 PM"
+                }
+            ]
+        },
+        {
+            "id": "ACC-A9A9A23F",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "Cogs Co",
+            "progress": 49,
+            "status": "Active",
+            "note": "",
+            "appeals": [],
+            "updates": [
+                {
+                    "note": "We are currently\r\nworking on the\r\nacknowledgment side\r\nof this case, and we\r\nexpect the account to\r\nbe reactivated. We\r\ncannot confirm an\r\nexact timeframe at the\r\nmoment, but from our\r\nside, the case is strong.\r\nThe inventory is\r\ngenuine, and the\r\nproduct is still listed on\r\nAmazon and continues\r\nto generate sales,\r\nwhich is a positive sign\r\nand works in our favor.",
+                    "status": "Active",
+                    "progress": 49,
+                    "by": "admin",
+                    "at": "18 Jun 2026, 07:56 PM"
+                }
+            ]
+        },
+        {
+            "id": "ACC-F18AB020",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "Chai Enterprise",
+            "progress": 39,
+            "status": "Active",
+            "note": "",
+            "appeals": [],
+            "updates": [
+                {
+                    "note": "This account was\r\ndeactivated due to five\r\nASINs. However,\r\nobtaining the Letter of\r\nAuthorization (LOA) for\r\nthe (Mediherb) brand\r\nis essential. There is\r\nalso an Intellectual\r\nProperty (IP) violation\r\non the account. For\r\nnow, we are focusing\r\nonly on resolving the\r\nissue related to the\r\n(Mediherb) ASIN.",
+                    "status": "Active",
+                    "progress": 0,
+                    "by": "admin",
+                    "at": "18 Jun 2026, 07:56 PM"
+                }
+            ]
+        },
+        {
+            "id": "ACC-A2E2DFF0",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "Elite Tech 3.0",
+            "progress": 90,
+            "status": "Partially Reinstated",
+            "note": "",
+            "appeals": [],
+            "updates": [
+                {
+                    "note": "We have already sent\r\nthe pre-litigation\r\nnotice to Amazon.\r\nOnce we receive their\r\nresponse, we will\r\ndecide on the next\r\ncourse of action. We\r\nhave already resolved\r\nthe identity verification\r\nissue, and only one\r\nissue remains. This\r\naccount was\r\ndeactivated due to two\r\nissues: one productrelated issue and one\r\nidentity-related issue.",
+                    "status": "Active",
+                    "progress": 90,
+                    "by": "admin",
+                    "at": "18 Jun 2026, 07:58 PM"
+                }
+            ],
+            "issues": [
+                {
+                    "id": "6a34396c2e118",
+                    "title": "IDENTITY P4 VERFICATION",
+                    "detail": "RESOLVED",
+                    "status": "Resolved",
+                    "date": "18 Jun 2026"
+                }
+            ]
+        },
+        {
+            "id": "ACC-E4C4D6D7",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "SalesTechCA",
+            "progress": 55,
+            "status": "Active",
+            "note": "",
+            "appeals": [],
+            "updates": [
+                {
+                    "note": "This account has a\r\nlarge number of\r\nsupporting documents,\r\nand we are actively\r\nworking on them. We\r\nare also connected\r\nwith Amazon through\r\nour Service Provider\r\nPortal for this account.\r\nIn addition, we are in\r\ncommunication with\r\nthe Skinny Fit brand to\r\nobtain a Letter of\r\nAuthorization (LOA)\r\nfrom them.",
+                    "status": "Pending",
+                    "progress": 55,
+                    "by": "admin",
+                    "at": "18 Jun 2026, 07:58 PM"
+                }
+            ]
+        },
+        {
+            "id": "ACC-6D3F53A2",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "Key Retail",
+            "progress": 100,
+            "status": "Issue Resolved",
+            "note": "",
+            "appeals": []
+        },
+        {
+            "id": "ACC-00FF4E6A",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "Autanime LLC",
+            "progress": 0,
+            "status": "Closed",
+            "note": "",
+            "appeals": []
+        },
+        {
+            "id": "ACC-CAB9B7DF",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "Braun Direct",
+            "progress": 0,
+            "status": "Client Left",
+            "note": "",
+            "appeals": []
+        },
+        {
+            "id": "ACC-DE784646",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "Cashout Eats",
+            "progress": 0,
+            "status": "Client Left",
+            "note": "",
+            "appeals": []
+        },
+        {
+            "id": "ACC-1121EBC9",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "Danyal Products",
+            "progress": 0,
+            "status": "Client Left",
+            "note": "",
+            "appeals": []
+        },
+        {
+            "id": "ACC-5D4C5935",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "Dauntless Store",
+            "progress": 100,
+            "status": "Issue Resolved",
+            "note": "",
+            "appeals": []
+        },
+        {
+            "id": "ACC-C49381A8",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "EE ESENTIAL",
+            "progress": 28,
+            "status": "Under Review",
+            "note": "",
+            "appeals": []
+        },
+        {
+            "id": "ACC-00BC323B",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "Finish Line Supply",
+            "progress": 100,
+            "status": "Issue Resolved",
+            "note": "",
+            "appeals": []
+        },
+        {
+            "id": "ACC-D636E159",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "Geek Shoppers",
+            "progress": 0,
+            "status": "Client Left",
+            "note": "",
+            "appeals": []
+        },
+        {
+            "id": "ACC-1996A401",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "GOOD PRODUCTS BEST PRICE",
+            "progress": 71,
+            "status": "Client Left",
+            "note": "",
+            "appeals": []
+        },
+        {
+            "id": "ACC-34915AB5",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "infinity distribution",
+            "progress": 46,
+            "status": "Client Left",
+            "note": "",
+            "appeals": []
+        },
+        {
+            "id": "ACC-4AA1D676",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "Inspire Momentum Store",
+            "progress": 100,
+            "status": "Issue Resolved",
+            "note": "",
+            "appeals": [],
+            "issues": [
+                {
+                    "id": "6a343a13ea890",
+                    "title": "lego ip",
+                    "detail": "",
+                    "status": "Resolved",
+                    "date": "18 Jun 2026"
+                },
+                {
+                    "id": "6a343b2db7799",
+                    "title": "another product issue",
+                    "detail": "",
+                    "status": "Resolved",
+                    "date": "18 Jun 2026"
+                },
+                {
+                    "id": "6a343b39d102d",
+                    "title": "Lego product isssue",
+                    "detail": "",
+                    "status": "Resolved",
+                    "date": "18 Jun 2026"
+                }
+            ]
+        },
+        {
+            "id": "ACC-FE8A5497",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "K77",
+            "progress": 0,
+            "status": "Closed",
+            "note": "",
+            "appeals": []
+        },
+        {
+            "id": "ACC-9ECB7981",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "KJLStore",
+            "progress": 0,
+            "status": "Closed",
+            "note": "",
+            "appeals": []
+        },
+        {
+            "id": "ACC-FABC69C4",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "kongandbird collectibles login issue",
+            "progress": 16,
+            "status": "Additional Info Requested",
+            "note": "",
+            "appeals": []
+        },
+        {
+            "id": "ACC-675EAE1F",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "Pilates Mart",
+            "progress": 0,
+            "status": "Client Left",
+            "note": "",
+            "appeals": []
+        },
+        {
+            "id": "ACC-81B7A8FD",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "products4you",
+            "progress": 14,
+            "status": "Client Left",
+            "note": "",
+            "appeals": []
+        },
+        {
+            "id": "ACC-583E4B3E",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "produkt llc",
+            "progress": 59,
+            "status": "Active",
+            "note": "",
+            "appeals": []
+        },
+        {
+            "id": "ACC-24EE4BF8",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "Riggy's Store",
+            "progress": 27,
+            "status": "Additional Info Requested",
+            "note": "",
+            "appeals": []
+        },
+        {
+            "id": "ACC-62EA825F",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "Shak Sales",
+            "progress": 0,
+            "status": "Client Left",
+            "note": "",
+            "appeals": []
+        },
+        {
+            "id": "ACC-F00B59C8",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "Sneaker Score",
+            "progress": 54,
+            "status": "Escalated",
+            "note": "",
+            "appeals": []
+        },
+        {
+            "id": "ACC-C977028B",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "The D\u00e9cor Lab",
+            "progress": 100,
+            "status": "Issue Resolved",
+            "note": "",
+            "appeals": []
+        },
+        {
+            "id": "ACC-3DA440AB",
+            "user_id": "AMZ-C8DD23A6",
+            "account_name": "USA Merchandies",
+            "progress": 9,
+            "status": "Client Left",
+            "note": "",
+            "appeals": []
+        }
+    ]
+}
